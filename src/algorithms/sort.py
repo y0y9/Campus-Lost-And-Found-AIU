@@ -27,3 +27,36 @@ def merge(left,right):
     result.extend(right[j:])
     
     return result;
+
+
+
+
+def merge_sort_category(items):
+    if len(items) <= 1:
+        return items
+
+    mid = len(items)/ 2
+    mid = int(mid)
+    left = merge_sort_category(items[:mid])
+    right = merge_sort_category(items[mid:])
+
+    sorted_items = []
+    i,j = 0,0
+
+    while i < len(left) and j < len(right):
+        if left[i].category.casefold() <= right[j].category.casefold():
+            sorted_items.append(left[i])
+            i += 1
+        else:
+            sorted_items.append(right[j])
+            j += 1
+
+    while i < len(left):
+        sorted_items.append(left[i])
+        i += 1
+
+    while j < len(right):
+        sorted_items.append(right[j])
+        j += 1
+
+    return sorted_items
