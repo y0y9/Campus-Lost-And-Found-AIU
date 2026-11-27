@@ -1,5 +1,4 @@
-
-from data_structure import *
+from data_structure.linked_list import LinkedList
 from data_structure.bst import BinarySearchTree as BST
 from models.item import Item
 from datetime import datetime as dt 

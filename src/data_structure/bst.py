@@ -4,43 +4,50 @@ class TreeNode:
         self.right = right
         self.data = data
 class BinarySearchTree:
-    def __init__(self):
+    def __init__(self, key_attr = "item_id"):
         self.root = None
         self.count = 0
+    
+    
+    def get_key(self, data):
+        return getattr(data, self.key_attr)
 
-    def insert(self, data):
-        if self.root is None:
-            self.root = TreeNode(data)
-            self.count += 1
-            return True
+def insert(self, data):
+    if self.root is None:
+        self.root = TreeNode(data)
+        self.count += 1
+        return True
+    current = self.root
+    data_key = self.get_key(data)
+    while True:
+        
+        current_key = self.get_key(current.data)
+        if data_key == current_key:
+            return False
+        elif data_key < current_key:
+            if current.left is None:
+                current.left = TreeNode(data)
+                self.count += 1
+                return True
+            current = current.left
+        else:
+            if current.right is None:
+                current.right = TreeNode(data)
+                self.count += 1
+                return True
+            current = current.right
 
-        current = self.root
-        while True:
-            if data.item_id == current.data.item_id:
-                return False
-            elif data.item_id < current.data.item_id:
-                if current.left is None:
-                    current.left = TreeNode(data)
-                    self.count += 1
-                    return True
-                current = current.left
-            else:
-                if current.right is None:
-                    current.right = TreeNode(data)
-                    self.count += 1
-                    return True
-                current = current.right
-
-    def search(self, item_id):
-        current = self.root
-        while current is not None:
-            if item_id == current.data.item_id:
-                return current.data
-            elif item_id < current.data.item_id:
-                current = current.left
-            else:
-                current = current.right
-        return None
+def search(self, key):
+    current = self.root
+    while current is not None:
+        current_key = self.get_key(current.data)
+        if key == current_key:
+            return current.data
+        elif key < current_key:
+            current = current.left
+        else:
+            current = current.right
+    return None
 
     def delete(self, item_id):
         if self.search(item_id) is None:

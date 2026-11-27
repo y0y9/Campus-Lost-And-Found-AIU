@@ -25,6 +25,8 @@ class LinkedList:
             
             return '-->'.join(output)
     
+    def __len__(self):
+        return self.size
     
     
     def insert_end(self,data):

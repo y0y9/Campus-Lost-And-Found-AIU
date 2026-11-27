@@ -3,14 +3,8 @@ from data_structure.linked_list import LinkedList
 from algorithms.sort import merge_sort, merge_sort_category
 
 
-def search_item(
-    item_id=None,
-    description=None,
-    category=None,
-    date_found=None,
-    location_found=None,
-    status=None
-):
+def search_item( item_id=None, description=None, category=None, date_found=None,
+                location_found=None, status=None):
 
     results = LinkedList()
 
@@ -29,11 +23,11 @@ def search_item(
     if description is not None:
         matches = item_services.get_items_by_description(description)
         matching_ids = {item.item_id for item in matches}
-
-        all_items = [
-            item for item in all_items
-            if item.item_id in matching_ids
-        ]
+        
+        for item in all_items:
+            if item.item_id in matching_ids :
+                all_items.append(item)
+            
 
     if category is not None:
         matches = item_services.get_items_by_category(category)
